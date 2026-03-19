@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HelixHealth — Post-Sale Expansion Demo</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2212%22 fill=%22%230a4f6e%22/><text y=%22.9em%22 font-size=%2268%22 x=%2210%22 fill=%22white%22 font-weight=%22bold%22>H</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<!--MERKURY TAG START. PLACE AT START OF DOCUMENT HEAD. DO NOT CHANGE-->
+<script type="text/javascript">
+window._svq = window._svq || [];
+window._svq.push(['_trackPageView']);
+(function(d,c){
+  var sv=d.createElement(c); sv.type='text/javascript'; sv.async=true;
+  sv.src='data:text/javascript,/* Merkury sv.js stub */';
+  var s=d.getElementsByTagName(c)[0]; s.parentNode.insertBefore(sv,s);
+})(document,'script');
+</script>
+<!--MERKURY TAG END. DO NOT CHANGE-->
+
+<style>
+:root {
+  --hx-navy:    #071e34;
+  --hx-teal:    #0a6e8a;
+  --hx-teal-l:  #0fa8cc;
+  --hx-sky:     #e6f4f8;
+  --hx-green:   #0d9e6e;
+  --hx-white:   #ffffff;
+  --hx-off:     #f4f7fa;
+  --hx-border:  #d0dde6;
+  --hx-text:    #071e34;
+  --hx-text2:   #3a5068;
+  --hx-text3:   #7a9ab0;
+  --merkury-teal:#00c2b8;
+  --merkury-navy:#0f1e32;
+  --aep-blue:   #1473e6;
+  --ajo-purple: #6e4eda;
+  --ajo-purple-l:#a78ff0;
+  --mk-orange:  #f76a1a;
+  --crm-blue:   #0070d2;
+  --cja-green:  #12b886;
+  --warn-amber: #f59e0b;
+  --font:'DM Sans',-apple-system,sans-serif;
+  --font-serif:'DM Serif Display',Georgia,serif;
+  --mw:1280px; --g:40px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font);color:var(--hx-text);background:#0d1117;line-height:1.5;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;cursor:pointer;}
+button{font-family:var(--font);cursor:pointer;border:0;background:none;}
+.view{display:none;} .view.active{display:block;}
+
+/* ── PRESENTER BAR ───────────────────────────── */
+.presenter-bar{background:#060e18;border-bottom:1px solid rgba(0,194,184,.2);padding:8px 0;position:sticky;top:0;z-index:900;}
+.pbar-inner{max-width:var(--mw);margin:0 auto;padding:0 var(--g);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.pbar-left{display:flex;align-items:center;gap:8px;}
+.pbar-dot{width:7px;height:7px;border-radius:50%;background:var(--merkury-teal);animation:pulse 1.8s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.pbar-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--merkury-teal);}
+.pbar-sub{font-size:10px;color:rgba(255,255,255,.28);}
+.pbar-right{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.pbar-btn{font-family:var(--font);font-size:11px;font-weight:700;padding:6px 13px;border-radius:4px;cursor:pointer;border:1.5px solid;transition:all .15s;}
+.pb-whitespace{background:rgba(10,110,138,.15);color:var(--hx-teal-l);border-color:rgba(10,110,138,.3);}
+.pb-whitespace:hover,.pb-whitespace.active{background:rgba(10,110,138,.35);color:#fff;border-color:var(--hx-teal-l);}
+.pb-reengagement{background:rgba(245,158,11,.12);color:#fcd34d;border-color:rgba(245,158,11,.3);}
+.pb-reengagement:hover,.pb-reengagement.active{background:rgba(245,158,11,.28);color:#fff;border-color:var(--warn-amber);}
+.pb-expansion{background:rgba(13,158,110,.12);color:#2dd4a0;border-color:rgba(13,158,110,.28);}
+.pb-expansion:hover,.pb-expansion.active{background:rgba(13,158,110,.28);color:#fff;border-color:var(--hx-green);}
+
+/* ── SHARED CHROME ───────────────────────────── */
+.panel-header{padding:13px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px;background:#0a0f1a;}
+.panel-logo-mark{width:24px;height:24px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;}
+.plm-ajo{background:var(--ajo-purple);}
+.plm-crm{background:var(--crm-blue);}
+.plm-cja{background:var(--cja-green);}
+.plm-mk{background:var(--mk-orange);}
+.plm-aep{background:var(--aep-blue);}
+.panel-logo-name{font-size:12px;font-weight:700;color:rgba(255,255,255,.85);}
+.panel-logo-sub{font-size:9px;color:rgba(255,255,255,.35);}
+.panel-badge{margin-left:auto;border-radius:3px;padding:2px 7px;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;display:flex;align-items:center;gap:4px;}
+.pb-live{background:rgba(13,158,110,.2);border:1px solid var(--hx-green);color:#2dd4a0;}
+.pb-active{background:rgba(110,78,218,.2);border:1px solid var(--ajo-purple);color:var(--ajo-purple-l);}
+.pb-alert{background:rgba(245,158,11,.15);border:1px solid var(--warn-amber);color:#fcd34d;}
+.pb-dot{width:4px;height:4px;border-radius:50%;animation:pulse 1.5s infinite;}
+.pb-dot-green{background:#2dd4a0;}
+.pb-dot-purple{background:var(--ajo-purple);}
+.pb-dot-amber{background:var(--warn-amber);}
+.panel-sec{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,.05);}
+
+/* ── LAYOUT SYSTEM ───────────────────────────── */
+.three-col{display:grid;grid-template-columns:360px 1fr 340px;min-height:calc(100vh - 49px);background:#0d1117;}
+.two-col{display:grid;grid-template-columns:1fr 400px;min-height:calc(100vh - 49px);background:#0d1117;}
+.col-panel{overflow-y:auto;border-right:1px solid rgba(255,255,255,.06);}
+.col-panel:last-child{border-right:none;}
+.panel-body{padding:16px 20px;}
+
+/* ── ACCOUNT HEALTH CARD ─────────────────────── */
+.acct-health-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:16px;margin-bottom:14px;}
+.ahc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
+.ahc-name{font-size:16px;font-weight:700;color:#fff;}
+.ahc-sub{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px;}
+.ahc-health-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;letter-spacing:.5px;}
+.ahc-health-good{background:rgba(13,158,110,.15);color:#2dd4a0;border:1px solid rgba(13,158,110,.3);}
+.ahc-health-warn{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.3);}
+.ahc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.ahc-metric{background:rgba(255,255,255,.03);border-radius:5px;padding:9px 11px;}
+.ahc-metric-label{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.28);}
+.ahc-metric-val{font-size:15px;font-weight:700;color:#fff;margin-top:3px;}
+.ahc-metric-val-green{color:#2dd4a0;}
+.ahc-metric-val-amber{color:#fcd34d;}
+.ahc-metric-sub{font-size:9px;color:rgba(255,255,255,.28);margin-top:1px;}
+.ahc-progress-row{margin-bottom:6px;}
+.ahc-progress-label{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.45);margin-bottom:4px;}
+.ahc-bar-wrap{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.ahc-bar-green{height:100%;background:linear-gradient(90deg,var(--hx-green),var(--merkury-teal));border-radius:3px;}
+.ahc-bar-amber{height:100%;background:linear-gradient(90deg,var(--warn-amber),#fbbf24);border-radius:3px;}
+
+/* ── STAKEHOLDER LIST ────────────────────────── */
+.stakeholder-row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:6px;cursor:pointer;transition:background .12s;border:1.5px solid transparent;margin-bottom:6px;}
+.stakeholder-row:hover{background:rgba(255,255,255,.04);}
+.stakeholder-row.warn{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2);}
+.sh-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.sh-info{flex:1;min-width:0;}
+.sh-name{font-size:12px;font-weight:700;color:#fff;}
+.sh-role{font-size:10px;color:rgba(255,255,255,.38);margin-top:1px;}
+.sh-last{font-size:9px;margin-top:3px;}
+.sh-last-ok{color:#2dd4a0;}
+.sh-last-warn{color:#fcd34d;}
+.sh-last-quiet{color:rgba(255,255,255,.28);}
+.sh-score{font-size:16px;font-weight:700;flex-shrink:0;}
+
+/* ── WHITESPACE GRID ─────────────────────────── */
+.whitespace-section{margin-bottom:16px;}
+.ws-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.ws-sub{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:14px;}
+.ws-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ws-card{border-radius:6px;padding:14px;cursor:pointer;transition:all .15s;border:1.5px solid transparent;}
+.ws-card-gap{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);}
+.ws-card-gap:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);}
+.ws-card-owned{background:rgba(13,158,110,.06);border-color:rgba(13,158,110,.15);}
+.ws-card-icon{font-size:22px;margin-bottom:6px;}
+.ws-card-name{font-size:12px;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:3px;}
+.ws-card-status{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.5px;display:inline-block;margin-bottom:6px;}
+.ws-status-gap{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.3);}
+.ws-status-owned{background:rgba(13,158,110,.15);color:#2dd4a0;border:1px solid rgba(13,158,110,.3);}
+.ws-status-new{background:rgba(110,78,218,.15);color:var(--ajo-purple-l);border:1px solid rgba(110,78,218,.3);}
+.ws-card-revenue{font-size:11px;color:rgba(255,255,255,.45);}
+.ws-card-revenue strong{color:#fff;}
+
+/* ── AJO JOURNEY CANVAS (compact) ───────────── */
+.ajo-compact-canvas{background:rgba(110,78,218,.05);border:1px solid rgba(110,78,218,.15);border-radius:6px;padding:14px;margin-bottom:14px;}
+.acc-title{font-size:11px;font-weight:700;color:var(--ajo-purple-l);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.acc-node{display:flex;align-items:flex-start;gap:10px;margin-bottom:3px;}
+.acc-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;}
+.acc-dot-trigger{background:rgba(110,78,218,.3);border:1.5px solid var(--ajo-purple);}
+.acc-dot-detect{background:rgba(245,158,11,.2);border:1.5px solid var(--warn-amber);}
+.acc-dot-action{background:rgba(13,158,110,.2);border:1.5px solid var(--hx-green);}
+.acc-dot-fired{background:rgba(247,106,26,.25);border:1.5px solid var(--mk-orange);animation:glowPulse 1.5s infinite;}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 rgba(247,106,26,.4)}50%{box-shadow:0 0 0 5px rgba(247,106,26,0)}}
+.acc-connector{width:2px;height:14px;background:rgba(255,255,255,.06);margin-left:9px;}
+.acc-info{flex:1;padding-top:2px;}
+.acc-info-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.75);}
+.acc-info-detail{font-size:10px;color:rgba(255,255,255,.32);margin-top:1px;}
+.acc-chip{display:inline-flex;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;margin-top:4px;}
+.acc-chip-purple{background:rgba(110,78,218,.15);color:var(--ajo-purple-l);border:1px solid rgba(110,78,218,.3);}
+.acc-chip-amber{background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.25);}
+.acc-chip-green{background:rgba(13,158,110,.15);color:#2dd4a0;border:1px solid rgba(13,158,110,.3);}
+.acc-chip-orange{background:rgba(247,106,26,.15);color:#f0a070;border:1px solid rgba(247,106,26,.3);}
+
+/* ── MOCK CRM ────────────────────────────────── */
+.crm-card{background:rgba(255,255,255,.96);border-radius:8px;overflow:hidden;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.crm-card-header{padding:12px 16px;border-bottom:1px solid var(--hx-border);display:flex;align-items:center;gap:8px;background:#fff;}
+.crm-card-title{font-size:13px;font-weight:700;color:var(--hx-navy);}
+.crm-card-stage{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;}
+.crm-stage-expansion{background:rgba(110,78,218,.1);color:var(--ajo-purple);}
+.crm-stage-at-risk{background:#fff4ec;color:var(--mk-orange);}
+.crm-stage-healthy{background:#e8f8f2;color:var(--hx-green);}
+.crm-card-body{padding:12px 16px;background:#fff;}
+.crm-field-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--hx-off);}
+.crm-field-row:last-child{border-bottom:none;}
+.crm-field-label{font-size:11px;color:var(--hx-text3);}
+.crm-field-val{font-size:11px;font-weight:700;color:var(--hx-navy);}
+.crm-comment-thread{background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.crm-comment-header{padding:10px 16px;border-bottom:1px solid var(--hx-border);background:#fff;font-size:12px;font-weight:700;color:var(--hx-navy);}
+.crm-comment{padding:10px 16px;border-bottom:1px solid var(--hx-off);background:#fff;}
+.crm-comment:last-child{border-bottom:none;}
+.crm-comment-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.crm-comment-avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+.crm-comment-name{font-size:11px;font-weight:700;color:var(--hx-navy);}
+.crm-comment-time{font-size:10px;color:var(--hx-text3);margin-left:auto;}
+.crm-comment-text{font-size:12px;color:var(--hx-text2);line-height:1.6;}
+.crm-comment-flag{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;margin-top:5px;}
+.crm-flag-warn{background:#fff4ec;color:var(--mk-orange);border:1px solid rgba(232,97,26,.25);}
+.crm-flag-action{background:#e8f8f2;color:var(--hx-green);border:1px solid rgba(13,158,110,.25);}
+.crm-flag-ajo{background:rgba(110,78,218,.08);color:var(--ajo-purple);border:1px solid rgba(110,78,218,.2);}
+
+/* ── EXPANSION ACTION PLANS ──────────────────── */
+.expansion-card{border-radius:8px;overflow:hidden;margin-bottom:12px;cursor:pointer;transition:all .15s;border:1.5px solid transparent;}
+.expansion-card:hover{transform:translateY(-1px);}
+.ec-1{background:rgba(13,158,110,.08);border-color:rgba(13,158,110,.25);}
+.ec-1:hover{border-color:var(--hx-green);}
+.ec-2{background:rgba(10,110,138,.08);border-color:rgba(10,110,138,.2);}
+.ec-2:hover{border-color:var(--hx-teal);}
+.ec-3{background:rgba(110,78,218,.06);border-color:rgba(110,78,218,.15);}
+.ec-3:hover{border-color:var(--ajo-purple);}
+.ec-header{padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.ec-rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.ec-rank-1{background:rgba(13,158,110,.25);color:#2dd4a0;border:1px solid rgba(13,158,110,.4);}
+.ec-rank-2{background:rgba(10,110,138,.25);color:var(--hx-teal-l);border:1px solid rgba(10,110,138,.4);}
+.ec-rank-3{background:rgba(110,78,218,.2);color:var(--ajo-purple-l);border:1px solid rgba(110,78,218,.35);}
+.ec-title{font-size:13px;font-weight:700;color:#fff;}
+.ec-prob{margin-left:auto;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);}
+.ec-body{padding:0 14px 12px;}
+.ec-product{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:6px;}
+.ec-value{font-size:14px;font-weight:700;margin-bottom:6px;}
+.ec-value-green{color:#2dd4a0;}
+.ec-value-teal{color:var(--hx-teal-l);}
+.ec-value-purple{color:var(--ajo-purple-l);}
+.ec-signals{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+.ec-signal{font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.09);}
+.ec-action-row{display:flex;gap:6px;}
+.ec-btn-primary{font-family:var(--font);font-size:10px;font-weight:700;padding:6px 12px;border-radius:4px;cursor:pointer;border:none;transition:background .15s;}
+.ec-btn-auto{background:var(--hx-green);color:#fff;}
+.ec-btn-auto:hover{background:#0bb87e;}
+.ec-btn-manual{background:rgba(255,255,255,.08);color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.12) !important;border-width:1px;border-style:solid;}
+
+/* CJA Attribution strip */
+.cja-attr-block{background:rgba(18,184,134,.06);border:1px solid rgba(18,184,134,.18);border-radius:6px;padding:14px;margin-top:14px;}
+.cja-attr-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cja-green);margin-bottom:8px;}
+.cja-attr-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.cja-attr-row:last-child{border-bottom:none;}
+.cja-attr-journey{font-size:11px;color:rgba(255,255,255,.6);}
+.cja-attr-val{font-size:12px;font-weight:700;color:#2dd4a0;}
+
+/* Timeline fast-forward */
+.timeline-bar{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px;margin-bottom:14px;}
+.tl-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px;}
+.tl-track{position:relative;padding-left:20px;}
+.tl-track::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:2px;background:rgba(255,255,255,.06);}
+.tl-event{position:relative;margin-bottom:12px;padding-bottom:2px;}
+.tl-event:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-20px;top:3px;width:10px;height:10px;border-radius:50%;}
+.tl-dot-done{background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.3);}
+.tl-dot-active{background:var(--merkury-teal);border:1.5px solid var(--merkury-teal);animation:pulse 1.5s infinite;}
+.tl-dot-warn{background:var(--warn-amber);border:1.5px solid var(--warn-amber);}
+.tl-dot-action{background:var(--hx-green);border:1.5px solid var(--hx-green);}
+.tl-day{font-size:9px;font-weight:700;color:rgba(255,255,255,.28);margin-bottom:2px;}
+.tl-text{font-size:11px;color:rgba(255,255,255,.65);line-height:1.5;}
+.tl-text.warn{color:#fcd34d;}
+.tl-text.action{color:#2dd4a0;}
+
+/* Responsive */
+@media(max-width:1200px){
+  .three-col{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:900px){
+  .three-col,.two-col{grid-template-columns:1fr;}
+  .ws-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- PRESENTER BAR -->
+<div class="presenter-bar">
+  <div class="pbar-inner">
+    <div class="pbar-left">
+      <div class="pbar-dot"></div>
+      <span class="pbar-label">Presenter Controls</span>
+      <span class="pbar-sub">Brightway Expansion · Post-Sale · Adobe Summit 2026</span>
+    </div>
+    <div class="pbar-right">
+      <button class="pbar-btn pb-whitespace active" id="pbtn-ws" onclick="goToView(1)">📊 Step 1 — Whitespace Detection</button>
+      <button class="pbar-btn pb-reengagement" id="pbtn-re" onclick="goToView(2)">⚠️ Step 2 — Re-Engagement</button>
+      <button class="pbar-btn pb-expansion" id="pbtn-ex" onclick="goToView(3)">🚀 Step 3 — Expansion Plans</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VIEW 1: WHITESPACE DETECTION ══ -->
+<div id="view-1" class="view active">
+  <div class="three-col">
+
+    <!-- COL 1: Account health + stakeholders (CRM style) -->
+    <div class="col-panel" style="background:#f0f4f8;">
+      <div class="panel-header" style="background:var(--crm-blue);">
+        <div class="panel-logo-mark plm-crm" style="background:rgba(255,255,255,.25);color:#fff;">C</div>
+        <div><div class="panel-logo-name">HelixCRM — Aisha Grant, CSM</div><div class="panel-logo-sub">Brightway Behavioral Network · Account Health</div></div>
+      </div>
+      <div class="panel-body" style="background:#f0f4f8;">
+
+        <!-- Account health -->
+        <div class="acct-health-card" style="background:#fff;border-color:var(--hx-border);">
+          <div class="ahc-top">
+            <div><div class="ahc-name" style="color:var(--hx-navy);">Brightway Behavioral Network</div><div class="ahc-sub" style="color:var(--hx-text3);">Healthcare Provider · Austin, TX · Customer since Jan 2026</div></div>
+            <div class="ahc-health-badge ahc-health-good">Healthy</div>
+          </div>
+          <div class="ahc-metrics">
+            <div class="ahc-metric"><div class="ahc-metric-label">Current ARR</div><div class="ahc-metric-val" style="color:var(--hx-teal);">$190,000</div><div class="ahc-metric-sub">Target: $280K</div></div>
+            <div class="ahc-metric"><div class="ahc-metric-label">ARR Gap</div><div class="ahc-metric-val ahc-metric-val-amber">$90,000</div><div class="ahc-metric-sub">47% to target</div></div>
+            <div class="ahc-metric"><div class="ahc-metric-label">Days Since Close</div><div class="ahc-metric-val" style="color:var(--hx-navy);">52</div><div class="ahc-metric-sub">On track</div></div>
+            <div class="ahc-metric"><div class="ahc-metric-label">NPS Score</div><div class="ahc-metric-val ahc-metric-val-green">74</div><div class="ahc-metric-sub">Above avg</div></div>
+          </div>
+          <div class="ahc-progress-row">
+            <div class="ahc-progress-label"><span style="color:var(--hx-text2);">ARR progress to target</span><span style="color:var(--hx-teal);font-weight:700;">$190K / $280K</span></div>
+            <div class="ahc-bar-wrap"><div class="ahc-bar-amber" style="width:68%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Stakeholder engagement -->
+        <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--hx-text3);margin-bottom:8px;">Buying Group Engagement</div>
+        <div class="stakeholder-row" style="background:#fff;border:1px solid var(--hx-border);">
+          <div class="sh-avatar" style="background:rgba(20,115,230,.12);">🩺</div>
+          <div class="sh-info"><div class="sh-name" style="color:var(--hx-navy);">Dr. Lee Nguyen</div><div class="sh-role" style="color:var(--hx-text3);">Clinical Director</div><div class="sh-last sh-last-ok">Last active: 2 days ago</div></div>
+          <div class="sh-score" style="color:var(--aep-blue);">82</div>
+        </div>
+        <div class="stakeholder-row" style="background:#fff;border:1px solid var(--hx-border);">
+          <div class="sh-avatar" style="background:rgba(232,97,26,.12);">📦</div>
+          <div class="sh-info"><div class="sh-name" style="color:var(--hx-navy);">Amir Hassan</div><div class="sh-role" style="color:var(--hx-text3);">Procurement Lead</div><div class="sh-last sh-last-ok">Last active: 5 days ago</div></div>
+          <div class="sh-score" style="color:var(--mk-orange);">71</div>
+        </div>
+        <div class="stakeholder-row warn" style="background:#fffbeb;border-color:rgba(245,158,11,.3);">
+          <div class="sh-avatar" style="background:rgba(245,158,11,.15);">📋</div>
+          <div class="sh-info"><div class="sh-name" style="color:var(--hx-navy);">Dana Forsythe</div><div class="sh-role" style="color:var(--hx-text3);">Compliance Officer</div><div class="sh-last sh-last-warn">⚠ Gone quiet — 18 days inactive</div></div>
+          <div class="sh-score" style="color:var(--warn-amber);">41</div>
+        </div>
+
+        <div style="margin-top:14px;background:#fff;border:1px solid var(--hx-border);border-radius:6px;padding:12px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--hx-text3);margin-bottom:8px;">Products on Contract</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;">
+            <span style="font-size:10px;font-weight:700;background:#e8f8f2;color:var(--hx-green);padding:3px 9px;border-radius:3px;">✓ HelixMind Mental Health</span>
+            <span style="font-size:10px;font-weight:700;background:var(--hx-off);color:var(--hx-text3);padding:3px 9px;border-radius:3px;">✗ HelixCheck Metabolic</span>
+            <span style="font-size:10px;font-weight:700;background:var(--hx-off);color:var(--hx-text3);padding:3px 9px;border-radius:3px;">✗ HelixPack Recovery</span>
+            <span style="font-size:10px;font-weight:700;background:var(--hx-off);color:var(--hx-text3);padding:3px 9px;border-radius:3px;">✗ HelixCheck Rapid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 2: Whitespace map (AJO B2B / CJA) -->
+    <div class="col-panel" style="background:#0d1117;">
+      <div class="panel-header">
+        <div class="panel-logo-mark plm-ajo">AJ</div>
+        <div><div class="panel-logo-name">AJO B2B — Whitespace Detection</div><div class="panel-logo-sub">Brightway Behavioral · Catalog gap analysis</div></div>
+        <div class="panel-badge pb-active"><div class="pb-dot pb-dot-purple"></div>Scanning</div>
+      </div>
+      <div class="panel-body">
+        <div class="whitespace-section">
+          <div class="ws-title">Catalog Coverage — Brightway Behavioral Network</div>
+          <div class="ws-sub">AJO B2B has scanned Brightway's contract against the full HelixHealth catalog. Two high-value gaps identified.</div>
+          <div class="ws-grid">
+            <div class="ws-card ws-card-owned">
+              <div class="ws-card-icon">🧠</div>
+              <div class="ws-card-name">HelixMind Mental Health</div>
+              <div class="ws-card-status ws-status-owned">On Contract</div>
+              <div class="ws-card-revenue">ARR: <strong>$190,000</strong></div>
+            </div>
+            <div class="ws-card ws-card-gap">
+              <div class="ws-card-icon">🧬</div>
+              <div class="ws-card-name">HelixCheck Metabolic Panel</div>
+              <div class="ws-card-status ws-status-gap">Gap — Not on contract</div>
+              <div class="ws-card-revenue">Opportunity: <strong>$48,000</strong></div>
+            </div>
+            <div class="ws-card ws-card-gap">
+              <div class="ws-card-icon">💊</div>
+              <div class="ws-card-name">HelixPack Recovery</div>
+              <div class="ws-card-status ws-status-gap">Gap — Not on contract</div>
+              <div class="ws-card-revenue">Opportunity: <strong>$36,000</strong></div>
+            </div>
+            <div class="ws-card ws-card-gap">
+              <div class="ws-card-icon">⚡</div>
+              <div class="ws-card-name">HelixCheck Rapid Panel</div>
+              <div class="ws-card-status ws-status-new">New product line</div>
+              <div class="ws-card-revenue">Opportunity: <strong>$22,000</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AJO signal -->
+        <div class="ajo-compact-canvas">
+          <div class="acc-title">⚡ Whitespace signals detected — expansion journey queued</div>
+          <div class="acc-node"><div class="acc-dot acc-dot-trigger">⚡</div><div class="acc-info"><div class="acc-info-label">Trigger: Catalog gap analysis complete</div><div class="acc-info-detail">2 gaps, total opp value $84K · Brightway in 90-day post-close window</div><span class="acc-chip acc-chip-purple">Day 52</span></div></div>
+          <div class="acc-connector"></div>
+          <div class="acc-node"><div class="acc-dot acc-dot-detect">🔍</div><div class="acc-info"><div class="acc-info-label">Signal: Dr. Nguyen re-engaged on clinical portal</div><div class="acc-info-detail">3 page views on HelixCheck Metabolic data — high-intent signal</div><span class="acc-chip acc-chip-amber">Engagement detected</span></div></div>
+          <div class="acc-connector"></div>
+          <div class="acc-node"><div class="acc-dot acc-dot-action">📊</div><div class="acc-info"><div class="acc-info-label">Action: Expansion action plans generated</div><div class="acc-info-detail">2 plays scored by probability · Surfaced to Aisha Grant in CRM</div><span class="acc-chip acc-chip-green">Plans ready</span></div></div>
+        </div>
+
+        <!-- 90-day timeline -->
+        <div class="timeline-bar">
+          <div class="tl-title">90-Day Fast-Forward</div>
+          <div class="tl-track">
+            <div class="tl-event"><div class="tl-dot tl-dot-done"></div><div class="tl-day">Day 0</div><div class="tl-text">Initial HelixMind contract signed — $190K ARR</div></div>
+            <div class="tl-event"><div class="tl-dot tl-dot-done"></div><div class="tl-day">Day 14</div><div class="tl-text">Onboarding complete · Dr. Nguyen + Amir engaged · Dana active</div></div>
+            <div class="tl-event"><div class="tl-dot tl-dot-warn"></div><div class="tl-day">Day 34</div><div class="tl-text warn">Dana Forsythe goes quiet — formulary review stalled</div></div>
+            <div class="tl-event"><div class="tl-dot tl-dot-active"></div><div class="tl-day">Day 52 — NOW</div><div class="tl-text">AJO B2B detects whitespace · Dr. Nguyen views HelixCheck data · Expansion plays scored</div></div>
+            <div class="tl-event"><div class="tl-dot tl-dot-action"></div><div class="tl-day">Day 60 (projected)</div><div class="tl-text action">HelixCheck Metabolic expansion close → +$48K ARR</div></div>
+            <div class="tl-event"><div class="tl-dot tl-dot-action"></div><div class="tl-day">Day 90 (projected)</div><div class="tl-text action">HelixPack Recovery add-on → +$36K ARR · Target: $280K reached</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 3: CJA attribution -->
+    <div class="col-panel" style="background:#0d1117;">
+      <div class="panel-header">
+        <div class="panel-logo-mark plm-cja">CJ</div>
+        <div><div class="panel-logo-name">Customer Journey Analytics</div><div class="panel-logo-sub">Expansion Attribution · Brightway</div></div>
+        <div class="panel-badge pb-live"><div class="pb-dot pb-dot-green"></div>Live</div>
+      </div>
+      <div class="panel-body">
+        <div class="panel-sec">Whitespace Signal Sources</div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:rgba(255,255,255,.55);">Dr. Nguyen — HelixCheck pages</span>
+            <span style="font-size:12px;font-weight:700;color:#5aa8f8;">3 views</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:10px;overflow:hidden;"><div style="width:75%;height:100%;background:linear-gradient(90deg,rgba(20,115,230,.5),#5aa8f8);border-radius:3px;"></div></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:rgba(255,255,255,.55);">Amir Hassan — Pricing activity</span>
+            <span style="font-size:12px;font-weight:700;color:#f0a070;">2 views</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:10px;overflow:hidden;"><div style="width:50%;height:100%;background:linear-gradient(90deg,rgba(232,97,26,.5),#f0a070);border-radius:3px;"></div></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:rgba(255,255,255,.55);">Dana Forsythe — Inactive (18 days)</span>
+            <span style="font-size:12px;font-weight:700;color:#fcd34d;">⚠ Stalled</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:4px;overflow:hidden;"><div style="width:10%;height:100%;background:var(--warn-amber);border-radius:3px;"></div></div>
+        </div>
+
+        <div class="panel-sec">Projected Expansion Value</div>
+        <div style="background:rgba(13,158,110,.08);border:1px solid rgba(13,158,110,.2);border-radius:6px;padding:14px;margin-bottom:14px;">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+            <span style="font-size:28px;font-weight:700;color:#2dd4a0;">$280K</span>
+            <span style="font-size:12px;color:rgba(255,255,255,.4);">projected ARR at 90 days</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:4px;overflow:hidden;"><div style="width:68%;height:100%;background:linear-gradient(90deg,var(--hx-green),var(--merkury-teal));border-radius:3px;"></div></div>
+          <div style="font-size:9px;color:rgba(255,255,255,.3);">Current $190K (68%) → Target $280K</div>
+        </div>
+
+        <div class="cja-attr-block">
+          <div class="cja-attr-label">Attribution — Expansion Journeys</div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">HelixCheck upsell journey</span><span class="cja-attr-val">+$48,000</span></div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">HelixPack Recovery add-on</span><span class="cja-attr-val">+$36,000</span></div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">Dana re-engagement sequence</span><span class="cja-attr-val">Churn prevented</span></div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">Total projected expansion</span><span class="cja-attr-val">+$90,000</span></div>
+        </div>
+
+        <div style="margin-top:14px;background:rgba(18,184,134,.05);border:1px solid rgba(18,184,134,.12);border-radius:6px;padding:12px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cja-green);margin-bottom:4px;">Key Talking Point</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;">Expansion is a managed motion, not an accident. AJO B2B makes it systematic — surfaces the right plays at day 52 instead of waiting for the QBR at day 90.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /view-1 -->
+
+<!-- ══ VIEW 2: RE-ENGAGEMENT ══ -->
+<div id="view-2" class="view">
+  <div class="two-col">
+
+    <!-- LEFT: Mock CRM comment thread -->
+    <div class="col-panel" style="background:#f0f4f8;">
+      <div class="panel-header" style="background:var(--crm-blue);">
+        <div class="panel-logo-mark plm-crm" style="background:rgba(255,255,255,.25);color:#fff;">C</div>
+        <div><div class="panel-logo-name">HelixCRM — Aisha Grant, CSM</div><div class="panel-logo-sub">Brightway Behavioral · Opportunity thread</div></div>
+        <div class="panel-badge" style="background:rgba(245,158,11,.15);border:1px solid var(--warn-amber);color:#fcd34d;"><div class="pb-dot pb-dot-amber"></div>At Risk</div>
+      </div>
+      <div class="panel-body" style="background:#f0f4f8;">
+
+        <div class="crm-card">
+          <div class="crm-card-header">
+            <div class="crm-card-title">FY26 Renewal + Expansion — Brightway</div>
+            <div class="crm-card-stage crm-stage-at-risk">⚠ Compliance at risk</div>
+          </div>
+          <div class="crm-card-body">
+            <div class="crm-field-row"><span class="crm-field-label">Current ARR</span><span class="crm-field-val" style="color:var(--hx-teal);">$190,000</span></div>
+            <div class="crm-field-row"><span class="crm-field-label">Target ARR</span><span class="crm-field-val">$280,000</span></div>
+            <div class="crm-field-row"><span class="crm-field-label">Renewal date</span><span class="crm-field-val">Jan 15, 2027</span></div>
+            <div class="crm-field-row"><span class="crm-field-label">Dana Forsythe last active</span><span class="crm-field-val" style="color:var(--mk-orange);">18 days ago</span></div>
+            <div class="crm-field-row"><span class="crm-field-label">Formulary review status</span><span class="crm-field-val" style="color:var(--warn-amber);">Stalled — pending docs</span></div>
+          </div>
+        </div>
+
+        <div class="crm-comment-thread">
+          <div class="crm-comment-header">Activity &amp; Comments</div>
+
+          <div class="crm-comment" style="background:#fffbeb;border-left:3px solid var(--warn-amber);">
+            <div class="crm-comment-meta">
+              <div class="crm-comment-avatar" style="background:rgba(245,158,11,.15);">🤖</div>
+              <div class="crm-comment-name">AJO B2B — Automated Alert</div>
+              <div class="crm-comment-time">Today, Day 52</div>
+            </div>
+            <div class="crm-comment-text">Dana Forsythe has been inactive for 18 days. Re-order window for HelixMind is approaching (Day 60). Re-engagement sequence has been triggered through Marketo. Compliance documentation bundle sent via email.</div>
+            <div class="crm-comment-flag crm-flag-ajo">AJO B2B trigger</div>
+          </div>
+
+          <div class="crm-comment">
+            <div class="crm-comment-meta">
+              <div class="crm-comment-avatar" style="background:rgba(10,110,138,.12);">👤</div>
+              <div class="crm-comment-name">Aisha Grant</div>
+              <div class="crm-comment-time">Day 48</div>
+            </div>
+            <div class="crm-comment-text">Followed up with Dana via email — formulary documentation still pending. She mentioned compliance team is stretched. I've asked if she needs help pulling the state-specific formulary addendum. Will escalate if no response by Day 55.</div>
+            <div class="crm-comment-flag crm-flag-warn">⚠ Follow-up needed</div>
+          </div>
+
+          <div class="crm-comment">
+            <div class="crm-comment-meta">
+              <div class="crm-comment-avatar" style="background:rgba(10,110,138,.12);">👤</div>
+              <div class="crm-comment-name">Aisha Grant</div>
+              <div class="crm-comment-time">Day 40</div>
+            </div>
+            <div class="crm-comment-text">Dana downloaded the formulary compliance pack but hasn't confirmed next steps. Clinical and procurement are both engaged — HelixCheck Metabolic is looking promising with Dr. Nguyen. Main risk is Dana stalling the expansion approval.</div>
+          </div>
+
+          <div class="crm-comment">
+            <div class="crm-comment-meta">
+              <div class="crm-comment-avatar" style="background:rgba(13,158,110,.12);">👤</div>
+              <div class="crm-comment-name">Jordan Reyes</div>
+              <div class="crm-comment-time">Day 30</div>
+            </div>
+            <div class="crm-comment-text">Handing to Aisha for CSM ownership. Deal is closed. Dr. Nguyen and Amir are both strong. Keep an eye on Dana — she was the slowest to engage in the buying group and compliance sign-off will be needed for the formulary expansion.</div>
+            <div class="crm-comment-flag crm-flag-action">Handoff to CSM</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: AJO re-engagement + Marketo -->
+    <div class="col-panel" style="background:#0d1117;">
+      <div class="panel-header">
+        <div class="panel-logo-mark plm-ajo">AJ</div>
+        <div><div class="panel-logo-name">AJO B2B — Re-Engagement Sequence</div><div class="panel-logo-sub">Dana Forsythe · Compliance Officer · Day 52</div></div>
+        <div class="panel-badge pb-alert"><div class="pb-dot pb-dot-amber"></div>Triggered</div>
+      </div>
+      <div class="panel-body">
+        <div class="panel-sec">Inactivity Detection</div>
+        <div class="ajo-compact-canvas">
+          <div class="acc-title">⚠ Quiet stakeholder re-engagement triggered</div>
+          <div class="acc-node"><div class="acc-dot acc-dot-detect">📉</div><div class="acc-info"><div class="acc-info-label">Signal: Inactivity detected — Day 34 to Day 52</div><div class="acc-info-detail">Dana Forsythe · 18 days no website activity · Re-order window approaching Day 60</div><span class="acc-chip acc-chip-amber">Day 52 trigger</span></div></div>
+          <div class="acc-connector"></div>
+          <div class="acc-node"><div class="acc-dot acc-dot-trigger">⚡</div><div class="acc-info"><div class="acc-info-label">AJO B2B: Condition evaluated</div><div class="acc-info-detail">stakeholder_inactive_days ≥ 14 AND role = Compliance AND reorder_window = approaching</div><span class="acc-chip acc-chip-purple">Condition met</span></div></div>
+          <div class="acc-connector"></div>
+          <div class="acc-node"><div class="acc-dot acc-dot-action">✉</div><div class="acc-info"><div class="acc-info-label">Action: Marketo re-engagement email fired</div><div class="acc-info-detail">Compliance documentation bundle + state formulary addendum · Personalized for Dana</div><span class="acc-chip acc-chip-green">Sent</span></div></div>
+          <div class="acc-connector"></div>
+          <div class="acc-node"><div class="acc-dot acc-dot-action">📋</div><div class="acc-info"><div class="acc-info-label">Action: CRM alert to Aisha Grant</div><div class="acc-info-detail">Dana re-engagement sequence active · Escalate if no response by Day 55</div><span class="acc-chip acc-chip-orange">CSM notified</span></div></div>
+        </div>
+
+        <!-- Marketo email preview -->
+        <div class="panel-sec">Marketo Re-Engagement Email — Dana Forsythe</div>
+        <div style="background:#fff;border-radius:8px;overflow:hidden;margin-bottom:14px;">
+          <div style="background:var(--hx-navy);padding:10px 14px;">
+            <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:2px;">From: Aisha Grant, HelixHealth · aisha.grant@helixhealth.com</div>
+            <div style="font-size:12px;font-weight:700;color:#fff;">HelixMind Compliance Docs — Everything you need for Brightway's formulary review</div>
+          </div>
+          <div style="padding:14px 16px;">
+            <div style="font-size:13px;font-weight:700;color:var(--hx-navy);margin-bottom:8px;">Hi Dana,</div>
+            <div style="font-size:12px;color:var(--hx-text2);line-height:1.65;margin-bottom:12px;">I wanted to make sure you have everything Brightway's compliance team needs to complete the formulary review for HelixMind. I've put together a complete documentation bundle — including the state-specific formulary addendum for Texas — that should cover all of your compliance requirements.<br><br>If there's anything specific your team is waiting on, I'm happy to get on a call this week.</div>
+            <a style="display:inline-block;background:var(--ajo-purple);color:#fff;padding:9px 18px;border-radius:4px;font-size:12px;font-weight:700;" href="#" onclick="return false;">Access Compliance Bundle →</a>
+          </div>
+          <div style="background:var(--merkury-navy);padding:8px 14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+            <span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--merkury-teal);flex-shrink:0;">AJO B2B signals</span>
+            <span style="font-size:9px;background:rgba(0,194,184,.1);border:1px solid rgba(0,194,184,.2);border-radius:3px;padding:2px 6px;color:rgba(255,255,255,.6);"><span style="color:var(--merkury-teal);">inactive_days:</span> 18</span>
+            <span style="font-size:9px;background:rgba(0,194,184,.1);border:1px solid rgba(0,194,184,.2);border-radius:3px;padding:2px 6px;color:rgba(255,255,255,.6);"><span style="color:var(--merkury-teal);">role:</span> Compliance</span>
+            <span style="font-size:9px;background:rgba(0,194,184,.1);border:1px solid rgba(0,194,184,.2);border-radius:3px;padding:2px 6px;color:rgba(255,255,255,.6);"><span style="color:var(--merkury-teal);">trigger:</span> Inactivity Day 52</span>
+          </div>
+        </div>
+
+        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-radius:6px;padding:12px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--warn-amber);margin-bottom:4px;">Key Talking Point</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;">Catching Dana at day 52 instead of day 180 is the difference between a re-engagement and a churn. AJO B2B detects the inactivity pattern before the CSM would normally notice it, and triggers the right outreach automatically.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /view-2 -->
+
+<!-- ══ VIEW 3: EXPANSION ACTION PLANS ══ -->
+<div id="view-3" class="view">
+  <div class="two-col">
+
+    <!-- LEFT: Expansion plans (CRM + AJO) -->
+    <div class="col-panel" style="background:#0d1117;">
+      <div class="panel-header">
+        <div class="panel-logo-mark plm-ajo">AJ</div>
+        <div><div class="panel-logo-name">AJO B2B — Expansion Action Plans</div><div class="panel-logo-sub">Brightway Behavioral · Scored by probability</div></div>
+        <div class="panel-badge pb-active"><div class="pb-dot pb-dot-purple"></div>3 plays ready</div>
+      </div>
+      <div class="panel-body">
+        <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:16px;line-height:1.6;">AJO B2B has scored expansion plays across Brightway's buying group — ranked by signal strength, role engagement, and whitespace value. Plays surface directly to Aisha in the CRM.</div>
+
+        <!-- Play 1 -->
+        <div class="expansion-card ec-1">
+          <div class="ec-header">
+            <div class="ec-rank ec-rank-1">#1</div>
+            <div><div class="ec-title">HelixCheck Metabolic — Upsell</div></div>
+            <div class="ec-prob">87% probability</div>
+          </div>
+          <div class="ec-body">
+            <div class="ec-product">Target: Dr. Lee Nguyen (Clinical Director) · HelixCheck Metabolic Panel</div>
+            <div class="ec-value ec-value-green">$48,000 ARR opportunity</div>
+            <div class="ec-signals">
+              <span class="ec-signal">Dr. Nguyen re-engaged — 3 page views</span>
+              <span class="ec-signal">Demo request page visited</span>
+              <span class="ec-signal">Engagement score: 82</span>
+              <span class="ec-signal">Clinical affinity match: High</span>
+            </div>
+            <div class="ec-action-row">
+              <button class="ec-btn-primary ec-btn-auto" onclick="return false;">⚡ Trigger Automated Outreach</button>
+              <button class="ec-btn-primary ec-btn-manual" onclick="return false;">Assign to Aisha</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Play 2 -->
+        <div class="expansion-card ec-2">
+          <div class="ec-header">
+            <div class="ec-rank ec-rank-2">#2</div>
+            <div><div class="ec-title">HelixPack Recovery — Add-On</div></div>
+            <div class="ec-prob">71% probability</div>
+          </div>
+          <div class="ec-body">
+            <div class="ec-product">Target: Amir Hassan (Procurement) · HelixPack Recovery Formula</div>
+            <div class="ec-value ec-value-teal">$36,000 ARR opportunity</div>
+            <div class="ec-signals">
+              <span class="ec-signal">Procurement track active</span>
+              <span class="ec-signal">Formulary review in progress</span>
+              <span class="ec-signal">Pricing page: 2 visits</span>
+              <span class="ec-signal">Engagement score: 71</span>
+            </div>
+            <div class="ec-action-row">
+              <button class="ec-btn-primary ec-btn-auto" onclick="return false;">⚡ Trigger Automated Outreach</button>
+              <button class="ec-btn-primary ec-btn-manual" onclick="return false;">Assign to Aisha</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Play 3 -->
+        <div class="expansion-card ec-3">
+          <div class="ec-header">
+            <div class="ec-rank ec-rank-3">#3</div>
+            <div><div class="ec-title">Dana Re-Engagement → Formulary Unlock</div></div>
+            <div class="ec-prob">58% probability</div>
+          </div>
+          <div class="ec-body">
+            <div class="ec-product">Target: Dana Forsythe (Compliance) · Formulary approval unblocks expansion</div>
+            <div class="ec-value ec-value-purple">Blocks $84K if not resolved</div>
+            <div class="ec-signals">
+              <span class="ec-signal">18 days inactive</span>
+              <span class="ec-signal">Re-engagement email sent</span>
+              <span class="ec-signal">Formulary doc downloaded</span>
+              <span class="ec-signal">Score dropped: 68 → 41</span>
+            </div>
+            <div class="ec-action-row">
+              <button class="ec-btn-primary ec-btn-auto" onclick="return false;">⚡ Escalate to Aisha</button>
+              <button class="ec-btn-primary ec-btn-manual" onclick="return false;">Schedule Call</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: CRM view (Aisha's perspective) + CJA loop -->
+    <div class="col-panel" style="background:#0d1117;border-right:none;">
+      <div class="panel-header" style="background:#0a1420;border-bottom:1px solid rgba(255,255,255,.07);">
+        <div class="panel-logo-mark plm-crm">C</div>
+        <div><div class="panel-logo-name">HelixCRM — Aisha Grant, CSM</div><div class="panel-logo-sub">Expansion plays surfaced · Brightway</div></div>
+        <div class="panel-badge pb-live"><div class="pb-dot pb-dot-green"></div>Synced</div>
+      </div>
+      <div class="panel-body">
+
+        <div class="panel-sec">Opportunity — Updated</div>
+        <div style="background:rgba(13,158,110,.08);border:1px solid rgba(13,158,110,.2);border-radius:6px;padding:14px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">FY26 Renewal + Expansion</div>
+            <div style="font-size:10px;font-weight:700;background:rgba(110,78,218,.15);color:var(--ajo-purple-l);border:1px solid rgba(110,78,218,.3);border-radius:3px;padding:2px 8px;">Expansion Mode</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+            <div style="background:rgba(255,255,255,.05);border-radius:4px;padding:8px;">
+              <div style="font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.28);">Current ARR</div>
+              <div style="font-size:16px;font-weight:700;color:var(--hx-teal-l);margin-top:3px;">$190,000</div>
+            </div>
+            <div style="background:rgba(255,255,255,.05);border-radius:4px;padding:8px;">
+              <div style="font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.28);">Expansion Pipeline</div>
+              <div style="font-size:16px;font-weight:700;color:#2dd4a0;margin-top:3px;">+$84,000</div>
+            </div>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:4px;overflow:hidden;">
+            <div style="width:68%;height:100%;background:linear-gradient(90deg,var(--hx-teal),var(--merkury-teal));border-radius:3px;"></div>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,.3);">$190K current → $280K target — 2 plays in motion</div>
+        </div>
+
+        <div class="panel-sec">Aisha's Action Queue</div>
+        <div style="margin-bottom:14px;">
+          <div style="background:rgba(13,158,110,.06);border:1px solid rgba(13,158,110,.15);border-radius:5px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;">
+            <span style="font-size:16px;flex-shrink:0;">📞</span>
+            <div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;">Call Dr. Nguyen — HelixCheck Metabolic demo</div><div style="font-size:10px;color:rgba(255,255,255,.4);">87% probability · AJO triggered · Today</div></div>
+            <div style="margin-left:auto;"><button style="font-family:var(--font);font-size:10px;font-weight:700;background:var(--hx-green);color:#fff;border:none;border-radius:3px;padding:5px 10px;cursor:pointer;" onclick="return false;">Done ✓</button></div>
+          </div>
+          <div style="background:rgba(10,110,138,.06);border:1px solid rgba(10,110,138,.15);border-radius:5px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;">
+            <span style="font-size:16px;flex-shrink:0;">✉</span>
+            <div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;">Send Amir pricing comparison — HelixPack Recovery</div><div style="font-size:10px;color:rgba(255,255,255,.4);">71% probability · Manual send · This week</div></div>
+            <div style="margin-left:auto;"><button style="font-family:var(--font);font-size:10px;font-weight:700;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:5px 10px;cursor:pointer;" onclick="return false;">Send</button></div>
+          </div>
+          <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:5px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;">
+            <span style="font-size:16px;flex-shrink:0;">⚠</span>
+            <div><div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;">Escalate Dana — formulary approval blocking</div><div style="font-size:10px;color:rgba(255,255,255,.4);">Re-engagement email sent · Day 55 deadline</div></div>
+            <div style="margin-left:auto;"><button style="font-family:var(--font);font-size:10px;font-weight:700;background:rgba(245,158,11,.2);color:#fcd34d;border:1px solid rgba(245,158,11,.3);border-radius:3px;padding:5px 10px;cursor:pointer;" onclick="return false;">Escalate</button></div>
+          </div>
+        </div>
+
+        <div class="cja-attr-block">
+          <div class="cja-attr-label">CJA — Attribution Loop</div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">HelixCheck upsell journey → Dr. Nguyen engagement</span><span class="cja-attr-val">$48K</span></div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">HelixPack Recovery journey → Amir activation</span><span class="cja-attr-val">$36K</span></div>
+          <div class="cja-attr-row"><span class="cja-attr-journey">Dana re-engagement → churn risk resolved</span><span class="cja-attr-val">Protected</span></div>
+        </div>
+
+        <div style="margin-top:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:12px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--merkury-teal);margin-bottom:4px;">Key Talking Point</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.65;">CJA closes the attribution loop — every expansion dollar tied back to the specific journey that drove it. AJO B2B makes expansion systematic. Aisha's queue is already built. She doesn't have to figure out who to call next — AJO did that for her.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /view-3 -->
+
+<script>
+(function(){var n=function(){};['log','warn','error','info'].forEach(function(m){if(typeof console==='undefined')window.console={};if(typeof console[m]!=='function')console[m]=n;});})();
+document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var h=a.getAttribute('href');if(!h||h==='#'){e.preventDefault();return false;}},true);
+
+function goToView(n){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  var el=document.getElementById('view-'+n);if(el)el.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  ['ws','re','ex'].forEach(function(k,i){
+    var btn=document.getElementById('pbtn-'+k);
+    if(btn)btn.classList.toggle('active',i+1===n);
+  });
+  window._svq=window._svq||[];window._svq.push(['_trackPageView']);
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  window._svq=window._svq||[];window._svq.push(['_trackPageView']);
+});
+</script>
+</body>
+</html>
