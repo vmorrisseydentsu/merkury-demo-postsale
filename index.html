@@ -371,6 +371,19 @@ button{font-family:var(--font);cursor:pointer;border:0;background:none;}
           <div class="sh-info"><div class="sh-name" style="color:var(--hx-navy);">Dana Forsythe</div><div class="sh-role" style="color:var(--hx-text3);">Compliance Officer</div><div class="sh-last sh-last-warn">⚠ Gone quiet — 18 days inactive</div></div>
           <div class="sh-score" style="color:var(--warn-amber);">41</div>
         </div>
+        <!-- Merkury ghost contact - not in CRM -->
+        <div class="stakeholder-row" style="background:#faf4ff;border:1.5px dashed rgba(110,78,218,.35);">
+          <div class="sh-avatar" style="background:rgba(110,78,218,.12);">👻</div>
+          <div class="sh-info">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <div class="sh-name" style="color:var(--hx-text3);font-style:italic;">Unmatched contact</div>
+              <span style="font-size:9px;font-weight:700;background:rgba(0,194,184,.12);color:var(--merkury-teal);border:1px solid rgba(0,194,184,.3);border-radius:2px;padding:1px 6px;">Merkury signal</span>
+            </div>
+            <div class="sh-role" style="color:var(--hx-text3);">Not in CRM — anonymous session detected</div>
+            <div style="font-size:9px;color:rgba(110,78,218,.8);margin-top:2px;">IP matches Brightway · VP-level signals · 4 sessions on HelixMind pricing</div>
+          </div>
+          <div class="sh-score" style="color:rgba(110,78,218,.7);font-size:11px;">?</div>
+        </div>
 
         <div style="margin-top:14px;background:#fff;border:1px solid var(--hx-border);border-radius:6px;padding:12px;">
           <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--hx-text3);margin-bottom:8px;">Products on Contract</div>
@@ -628,6 +641,36 @@ button{font-family:var(--font);cursor:pointer;border:0;background:none;}
           <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--warn-amber);margin-bottom:4px;">Key Talking Point</div>
           <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;">Catching Dana at day 52 instead of day 180 is the difference between a re-engagement and a churn. AJO B2B detects the inactivity pattern before the CSM would normally notice it, and triggers the right outreach automatically.</div>
         </div>
+
+        <!-- MERKURY: Net-new stakeholder detected -->
+        <div style="margin-top:12px;background:rgba(0,194,184,.06);border:1.5px solid rgba(0,194,184,.25);border-left:3px solid var(--merkury-teal);border-radius:6px;padding:12px 14px;">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--merkury-teal);animation:pulse 1.8s infinite;flex-shrink:0;"></div>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="3" fill="#00c2b8"/><path d="M12 3.5L20.5 20.5H15.8L14.2 16.8H9.8L8.2 20.5H3.5L12 3.5ZM12 9.5L10.6 13.2H13.4L12 9.5Z" fill="white"/></svg>
+            <span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--merkury-teal);">Merkury — New stakeholder detected</span>
+            <span style="margin-left:auto;font-size:9px;font-weight:700;background:rgba(110,78,218,.2);color:#a78ff0;border:1px solid rgba(110,78,218,.35);border-radius:3px;padding:1px 6px;">Not in CRM</span>
+          </div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:9px;">Anonymous session detected from Brightway IP range. Merkury resolved a VP-level contact browsing HelixMind pricing — this person is not in your CRM. While Dana goes quiet, someone new is researching.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:8px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:3px;font-family:'Courier New',monospace;">match_type</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.75);font-weight:600;">account</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:8px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:3px;font-family:'Courier New',monospace;">job_level_standard</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.75);font-weight:600;">VP</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:8px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:3px;font-family:'Courier New',monospace;">pages_visited</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.75);font-weight:600;">HelixMind pricing ×4</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:8px;">
+              <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:3px;font-family:'Courier New',monospace;">confidence_score</div>
+              <div style="font-size:11px;color:var(--merkury-teal);font-weight:700;">5 / 8</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;padding:7px 9px;background:rgba(110,78,218,.12);border:1px solid rgba(110,78,218,.25);border-radius:4px;font-size:10px;color:#a78ff0;line-height:1.5;">⚡ AJO B2B recommendation: add to buying group — enrich via Merkury and route to Aisha's outreach queue</div>
+        </div>
       </div>
     </div>
 
@@ -721,6 +764,32 @@ button{font-family:var(--font);cursor:pointer;border:0;background:none;}
             <div class="ec-action-row">
               <button class="ec-btn-primary ec-btn-auto" onclick="return false;">⚡ Escalate to Aisha</button>
               <button class="ec-btn-primary ec-btn-manual" onclick="return false;">Schedule Call</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Merkury: Anonymous expansion signal -->
+        <div class="expansion-card" style="border:1.5px solid rgba(0,194,184,.3);background:rgba(0,194,184,.05);">
+          <div class="ec-header" style="border-bottom-color:rgba(0,194,184,.15);">
+            <div class="ec-rank" style="background:rgba(0,194,184,.2);color:var(--merkury-teal);border-color:rgba(0,194,184,.3);">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="3" fill="#00c2b8"/><path d="M12 3.5L20.5 20.5H15.8L14.2 16.8H9.8L8.2 20.5H3.5L12 3.5ZM12 9.5L10.6 13.2H13.4L12 9.5Z" fill="white"/></svg>
+            </div>
+            <div><div class="ec-title" style="color:var(--merkury-teal);">HelixMind Expansion — Anonymous Signal</div></div>
+            <div style="font-size:10px;font-weight:700;background:rgba(0,194,184,.15);color:var(--merkury-teal);border:1px solid rgba(0,194,184,.3);border-radius:3px;padding:2px 7px;">Merkury</div>
+          </div>
+          <div class="ec-body">
+            <div class="ec-product" style="color:rgba(255,255,255,.6);">Source: 3 anonymous sessions from Brightway IP · VP-level profile · HelixMind pricing page</div>
+            <div class="ec-value" style="color:var(--merkury-teal);">Signal: net-new contact — not in CRM or buying group</div>
+            <div class="ec-signals">
+              <span class="ec-signal" style="border-color:rgba(0,194,184,.25);color:var(--merkury-teal);">dentsu.id resolved at account level</span>
+              <span class="ec-signal" style="border-color:rgba(0,194,184,.25);color:var(--merkury-teal);">job_level: VP · confidence: 5/8</span>
+              <span class="ec-signal" style="border-color:rgba(0,194,184,.25);color:var(--merkury-teal);">pages: HelixMind pricing ×3, case study ×1</span>
+              <span class="ec-signal" style="border-color:rgba(0,194,184,.25);color:var(--merkury-teal);">No form fill · No login</span>
+            </div>
+            <div style="margin-top:8px;padding:7px 9px;background:rgba(0,194,184,.08);border:1px solid rgba(0,194,184,.2);border-radius:4px;font-size:10px;color:rgba(255,255,255,.55);line-height:1.5;">Merkury detected expansion intent before anyone raised their hand. This contact doesn't exist in Aisha's CRM — but they're already deep in the buying journey. Enrich and add to buying group to unlock the play.</div>
+            <div class="ec-action-row">
+              <button class="ec-btn-primary ec-btn-auto" onclick="return false;">+ Add to Buying Group</button>
+              <button class="ec-btn-primary ec-btn-manual" onclick="return false;">Enrich via Merkury</button>
             </div>
           </div>
         </div>
